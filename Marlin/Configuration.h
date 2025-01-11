@@ -1225,7 +1225,7 @@ RN13S           - плата Robin Nano-s 1.3
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
 #define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define J_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define K_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -1241,7 +1241,7 @@ RN13S           - плата Robin Nano-s 1.3
 #define U_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define V_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define W_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING true // Set to true to invert the logic of the probe.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false // Set to true to invert the logic of the probe.
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
@@ -1429,7 +1429,7 @@ RN13S           - плата Robin Nano-s 1.3
  * Use G29 repeatedly, adjusting the Z height at each point with movement commands
  * or (with LCD_BED_LEVELING) the LCD controller.
  */
-#define PROBE_MANUALLY
+//#define PROBE_MANUALLY
 
 /**
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
@@ -1452,7 +1452,7 @@ RN13S           - плата Robin Nano-s 1.3
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+#define BLTOUCH
 
 /**
  * MagLev V4 probe by MDD
@@ -1604,7 +1604,7 @@ RN13S           - плата Robin Nano-s 1.3
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { 44, 5, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1664,8 +1664,8 @@ RN13S           - плата Robin Nano-s 1.3
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-#define MULTIPLE_PROBING 3
-#define EXTRA_PROBING    1
+//#define MULTIPLE_PROBING 1
+#define MULTIPLE_PROBING    2
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1689,11 +1689,11 @@ RN13S           - плата Robin Nano-s 1.3
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -3
-#define Z_PROBE_OFFSET_RANGE_MAX 3
+#define Z_PROBE_OFFSET_RANGE_MIN -50
+#define Z_PROBE_OFFSET_RANGE_MAX 50
 
 // Enable the M48 repeatability test to test probe accuracy
-//#define Z_MIN_PROBE_REPEATABILITY_TEST
+#define Z_MIN_PROBE_REPEATABILITY_TEST
 
 // Before deploy/stow pause for user confirmation
 //#define PAUSE_BEFORE_DEPLOY_STOW
@@ -1764,7 +1764,7 @@ RN13S           - плата Robin Nano-s 1.3
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR USR_X_DIR
 #define INVERT_Y_DIR USR_Y_DIR
-#define INVERT_Z_DIR USR_Z_DIR
+#define INVERT_Z_DIR false
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
@@ -1775,8 +1775,8 @@ RN13S           - плата Robin Nano-s 1.3
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR USR_E0_DIR
-#define INVERT_E1_DIR true
+#define INVERT_E0_DIR true
+#define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
@@ -1799,7 +1799,7 @@ RN13S           - плата Robin Nano-s 1.3
 #define Z_HOMING_HEIGHT  2      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
-#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
+#define Z_AFTER_HOMING  0      // (mm) Height to move to after homing Z
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
@@ -1816,15 +1816,15 @@ RN13S           - плата Robin Nano-s 1.3
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 250
-#define Y_BED_SIZE 210
+#define X_BED_SIZE 240
+#define Y_BED_SIZE 200
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE+X_MIN_POS
-#define Y_MAX_POS Y_BED_SIZE
+#define X_MAX_POS 240
+#define Y_MAX_POS 200
 #define Z_MAX_POS 200
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
@@ -1853,13 +1853,7 @@ RN13S           - плата Robin Nano-s 1.3
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
-  #define MIN_SOFTWARE_ENDSTOP_Z
-  #define MIN_SOFTWARE_ENDSTOP_I
-  #define MIN_SOFTWARE_ENDSTOP_J
-  #define MIN_SOFTWARE_ENDSTOP_K
-  #define MIN_SOFTWARE_ENDSTOP_U
-  #define MIN_SOFTWARE_ENDSTOP_V
-  #define MIN_SOFTWARE_ENDSTOP_W
+  //#define MIN_SOFTWARE_ENDSTOP_Z
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -2007,9 +2001,9 @@ RN13S           - плата Robin Nano-s 1.3
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
+#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
-#define MESH_BED_LEVELING
+//#define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable one of
@@ -2088,7 +2082,7 @@ RN13S           - плата Robin Nano-s 1.3
 
   // Set the number of grid points per dimension.
   #define GRID_MAX_POINTS_X 4
-  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+  #define GRID_MAX_POINTS_Y 4
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
@@ -2098,7 +2092,7 @@ RN13S           - плата Robin Nano-s 1.3
     // Beyond the probed grid, continue the implied tilt?
     // Default is to maintain the height of the nearest edge.
     #define EXTRAPOLATE_BEYOND_GRID
-
+    #define PROBING_MARGIN_LEFT 40
     //
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
@@ -2140,8 +2134,8 @@ RN13S           - плата Robin Nano-s 1.3
   //===========================================================================
 
   #define MESH_INSET 20          // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
-  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+  #define GRID_MAX_POINTS_X 4    // Don't use more than 7 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_Y 4
 
   //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS
 
@@ -2227,8 +2221,8 @@ RN13S           - плата Robin Nano-s 1.3
 #define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
-  #define Z_SAFE_HOMING_X_POINT 0  // X point for Z homing
-  #define Z_SAFE_HOMING_Y_POINT 0  // Y point for Z homing
+  #define Z_SAFE_HOMING_X_POINT 120  // X point for Z homing
+  #define Z_SAFE_HOMING_Y_POINT 100  // Y point for Z homing
 #endif
 
 // Homing speeds (mm/min)
@@ -2389,6 +2383,11 @@ EEPROM_W25Q
 #define PREHEAT_2_TEMP_BED     100
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
+#define PREHEAT_1_LABEL       "PLA"
+#define PREHEAT_1_TEMP_HOTEND  190
+#define PREHEAT_1_TEMP_BED     60
+#define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
+
 // @section motion
 
 /**
@@ -2406,7 +2405,7 @@ EEPROM_W25Q
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), 10, 20 }
+  #define NOZZLE_PARK_POINT { 10, 10, 0 }
   #define NOZZLE_PARK_MOVE          0   // Park motion: 0 = XY Move, 1 = X Only, 2 = Y Only, 3 = X before Y, 4 = Y before X
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
   #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
@@ -2585,7 +2584,7 @@ EEPROM_W25Q
  *
  * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek (Greece)', 'el_CY':'Greek (Cyprus)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'sv':'Swedish', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)' }
  */
-#define LCD_LANGUAGE en
+#define LCD_LANGUAGE ru
 
 /**
  * LCD Character Set
@@ -2609,7 +2608,7 @@ EEPROM_W25Q
  *
  * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
-#define DISPLAY_CHARSET_HD44780 JAPANESE
+#define DISPLAY_CHARSET_HD44780 CYRILLIC
 
 /**
  * Info Screen Style (0:Classic, 1:Průša)
